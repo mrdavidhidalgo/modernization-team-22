@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { ApuestaModule } from './apuesta/apuesta.module';
 import { CarreraModule } from './carrera/carrera.module';
 import { UsuarioModule } from './usuario/usuario.module';
+import { ContactsModule } from './contacts/contacts.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { UsuarioModule } from './usuario/usuario.module';
     UsuarioModule,
     CarreraModule,
     ApuestaModule,
+    ContactsModule,
     AppHeaderModule,
     ToastrModule.forRoot({
       timeOut: 7000,

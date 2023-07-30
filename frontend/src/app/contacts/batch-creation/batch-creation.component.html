@@ -1,0 +1,426 @@
+
+<form class="mx-5 my-3 was-validated" [formGroup]="contactsGeneralForm" (ngSubmit)="createContacts()" >
+
+<div class="container drag" appDnd (fileDropped)="processFile($event)">
+        <input type="file" class="file-input" display="none" #fileDropRef id="fileDropRef"
+         (change)="onFileSelected($event)" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="63" height="64" viewBox="0 0 63 64">
+          <g fill="#3B454F" fill-rule="nonzero">
+            <path
+              d="M42.656 15.135a1.953 1.953 0 0 1-1.391-.578L31.5 4.795l-9.765 9.762a1.97 1.97 0 1 1-2.785-2.785L30.106.616a1.97 1.97 0 0 1 2.785 0l11.157 11.156a1.97 1.97 0 0 1-1.392 3.363z" />
+            <path
+              d="M31.5 36.791a1.97 1.97 0 0 1-1.969-1.969V2.01a1.97 1.97 0 0 1 3.938 0v32.812a1.97 1.97 0 0 1-1.969 1.969z" />
+            <path
+              d="M55.781 63.041H7.22A7.225 7.225 0 0 1 0 55.822V41.385a4.599 4.599 0 0 1 4.594-4.594h7.234a4.567 4.567 0 0 1 4.402 3.276l2.814 9.382a.658.658 0 0 0 .628.467h23.656a.658.658 0 0 0 .628-.467l2.814-9.385a4.572 4.572 0 0 1 4.402-3.273h7.234A4.599 4.599 0 0 1 63 41.385v14.437a7.225 7.225 0 0 1-7.219 7.219zM4.594 40.729a.656.656 0 0 0-.657.656v14.437a3.286 3.286 0 0 0 3.282 3.282H55.78a3.286 3.286 0 0 0 3.282-3.282V41.385a.656.656 0 0 0-.657-.656h-7.234a.65.65 0 0 0-.628.467L47.73 50.58a4.628 4.628 0 0 1-4.402 3.274H19.672a4.567 4.567 0 0 1-4.402-3.276l-2.814-9.382a.65.65 0 0 0-.628-.467H4.594z" />
+          </g>
+        </svg>
+
+        <h3>Drag and drop file here</h3>
+        <h3>or</h3>
+        <label id="fileDropRefId" for="fileDropRef">Browse for file</label>
+      </div>
+      <div class="files-list">
+        <div class="single-file">
+          <div class="file-icon" style="width: 50px">
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px" y="0px" viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;" xml:space="preserve">
+              <polygon style="fill:#EDEADA;" points="51.5,14 37.5,0 6.5,0 6.5,58 51.5,58 " />
+              <g>
+                <path style="fill:#CEC9AE;"
+                  d="M16.5,23h25c0.552,0,1-0.447,1-1s-0.448-1-1-1h-25c-0.552,0-1,0.447-1,1S15.948,23,16.5,23z" />
+                <path style="fill:#CEC9AE;"
+                  d="M16.5,15h10c0.552,0,1-0.447,1-1s-0.448-1-1-1h-10c-0.552,0-1,0.447-1,1S15.948,15,16.5,15z" />
+                <path style="fill:#CEC9AE;"
+                  d="M41.5,29h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,29,41.5,29z" />
+                <path style="fill:#CEC9AE;"
+                  d="M41.5,37h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,37,41.5,37z" />
+                <path style="fill:#CEC9AE;"
+                  d="M41.5,45h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,45,41.5,45z" />
+              </g>
+              <polygon style="fill:#CEC9AE;" points="37.5,0 37.5,14 51.5,14 " />
+            </svg>
+          </div>
+          <div class="info">
+            <h4 class="name">
+              {{ fileName }}
+            </h4>
+          </div>
+
+          <div class="info">
+            <h4 class="name">
+              Records : {{ records }}
+            </h4>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" (change)="onCheckboxChange($event.target.checked)"
+              formArrayName="onlyInvalids" >
+            <label class="form-check-label" for="flexCheckDefault">
+              Only invalids
+            </label>
+          </div>
+
+
+          </div>
+      </div>
+      <input type="file" class="file-input"
+      (change)="onFileSelected($event)" #fileUpload>
+
+
+<div class=".container-fluid my-4">
+
+  <div class="table-responsive-xl text-nowrap" [formArrayName]="contacts">
+  <table class="table table-fixed">
+    <thead>
+      <tr>
+        <th scope="col" >Reference</th>
+        <th scope="col" >Name</th>
+        <th scope="col" >Surname</th>
+        <th scope="col" >Company</th>
+        <th scope="col" style="width: 16.66%">e-mail</th>
+        <th scope="col">Telephone</th>
+        <th scope="col">Sector</th>
+        <th scope="col">Position</th>
+        <th scope="col">Identity Document</th>
+        <th scope="col">Id. Doc. Type</th>
+        <th scope="col">Birth Data</th>
+        <th scope="col">Age</th>
+        <th scope="col">Street Type</th>
+        <th scope="col">Street Name</th>
+        <th scope="col">Number</th>
+        <th scope="col">Suite/Floor</th>
+        <th scope="col">Other Address</th>
+        <th scope="col">Country</th>
+        <th scope="col">State</th>
+        <th scope="col">City</th>
+        <th scope="col">Zipcode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contactsForm of contacts.controls; let i=index" [formGroup]="contactsForm" >
+
+        <td>
+          <input type="text" class="form-control" formControlName="reference" style="min-width: 100px;max-width:300px"></td>
+        <td><input type="text"  class="form-control" required formControlName="name" style="min-width: 150px;max-width:300px">
+          <div class="invalid-feedback"
+          *ngIf="contactsForm.get('name')?.hasError('required')">
+          Name is required
+        </div>
+        <div class="invalid-feedback"
+          *ngIf="contactsForm.get('name')?.hasError('maxlength')">
+          The Name have to be up 128 characters
+        </div>
+        </td>
+        <td><input type="text" class="form-control"
+          style="min-width: 150px;max-width:300px" formControlName="surname" >
+
+        </td>
+        <td><input type="text" class="form-control" style="min-width: 200px;max-width:300px" formControlName="company" ></td>
+        <td><input type="email"  class="form-control"
+           style="min-width: 200px;max-width:300px" formControlName="email" >
+           <div class="invalid-feedback"
+           *ngIf="contactsForm.get('email')?.hasError('pattern')">
+           The email is invalid
+         </div>
+          </td>
+        <td><input type="text"  class="form-control" formControlName="telephone" style="min-width: 200px;max-width:300px"></td>
+        <td><input type="text" class="form-control" formControlName="sector" style="min-width: 200px;max-width:300px" ></td>
+        <td><select type="text" class="form-control" formControlName="position" style="min-width: 80px;max-width:300px">
+
+            <option value="">--Choose an option--</option>
+            <option value="SR">Sr</option>
+            <option value="SRA">Sra</option>
+        </select>
+        </td>
+        <td><input type="text" class="form-control" formControlName="id_document" ></td>
+        <td><select type="text" class="form-control"  formControlName="id_document_type" >
+          <option value="">--Choose an option--</option>
+          <option value="dni">DNI</option>
+          <option value="passport">Passport</option>
+      </select>
+        </td>
+        <td><input  type="text" class="form-control" formControlName="birth_date" style="min-width: 100px;max-width:300px" pattern="\d{4}-\d{2}-\d{2}">
+          <div class="invalid-feedback"
+          *ngIf="contactsForm.get('birth_date')?.hasError('pattern')">
+          Birth data must have the pattern YYYY-MM-DD
+        </div>
+      </td>
+        <td><input type="text" class="form-control" formControlName="age" style="min-width: 80px;max-width:300px"></td>
+        <td><input type="text" class="form-control" formControlName="street_type" style="min-width: 90px;max-width:300px"></td>
+        <td><input type="text" class="form-control" formControlName="street_name" style="min-width: 150px;max-width:300px"></td>
+        <td><input type="text" class="form-control" formControlName="number" style="min-width: 100px;max-width:300px"></td>
+        <td><input type="text" class="form-control" formControlName="suite" style="min-width: 150px;max-width:300px"></td>
+        <td><input type="text" class="form-control" formControlName="other_address" style="min-width: 150px;max-width:300px" ></td>
+        <td><select class="form-select" id="country" formControlName="country" style="min-width: 150px;max-width:300px">
+            <option>select country</option>
+            <option value="af">afghanistan</option>
+            <option value="ax">aland islands</option>
+            <option value="al">albania</option>
+            <option value="dz">algeria</option>
+            <option value="as">american samoa</option>
+            <option value="ad">andorra</option>
+            <option value="ao">angola</option>
+            <option value="ai">anguilla</option>
+            <option value="aq">antarctica</option>
+            <option value="ag">antigua and barbuda</option>
+            <option value="ar">argentina</option>
+            <option value="am">armenia</option>
+            <option value="aw">aruba</option>
+            <option value="au">australia</option>
+            <option value="at">austria</option>
+            <option value="az">azerbaijan</option>
+            <option value="bs">bahamas</option>
+            <option value="bh">bahrain</option>
+            <option value="bd">bangladesh</option>
+            <option value="bb">barbados</option>
+            <option value="by">belarus</option>
+            <option value="be">belgium</option>
+            <option value="bz">belize</option>
+            <option value="bj">benin</option>
+            <option value="bm">bermuda</option>
+            <option value="bt">bhutan</option>
+            <option value="bo">bolivia</option>
+            <option value="bq">bonaire, sint eustatius and saba</option>
+            <option value="ba">bosnia and herzegovina</option>
+            <option value="bw">botswana</option>
+            <option value="bv">bouvet island</option>
+            <option value="br">brazil</option>
+            <option value="io">british indian ocean territory</option>
+            <option value="bn">brunei darussalam</option>
+            <option value="bg">bulgaria</option>
+            <option value="bf">burkina faso</option>
+            <option value="bi">burundi</option>
+            <option value="kh">cambodia</option>
+            <option value="cm">cameroon</option>
+            <option value="ca">canada</option>
+            <option value="cv">cape verde</option>
+            <option value="ky">cayman islands</option>
+            <option value="cf">central african republic</option>
+            <option value="td">chad</option>
+            <option value="cl">chile</option>
+            <option value="cn">china</option>
+            <option value="cx">christmas island</option>
+            <option value="cc">cocos (keeling) islands</option>
+            <option value="co">colombia</option>
+            <option value="km">comoros</option>
+            <option value="cg">congo</option>
+            <option value="cd">congo, democratic republic of the congo</option>
+            <option value="ck">cook islands</option>
+            <option value="cr">costa rica</option>
+            <option value="ci">cote d'ivoire</option>
+            <option value="hr">croatia</option>
+            <option value="cu">cuba</option>
+            <option value="cw">curacao</option>
+            <option value="cy">cyprus</option>
+            <option value="cz">czech republic</option>
+            <option value="dk">denmark</option>
+            <option value="dj">djibouti</option>
+            <option value="dm">dominica</option>
+            <option value="do">dominican republic</option>
+            <option value="ec">ecuador</option>
+            <option value="eg">egypt</option>
+            <option value="sv">el salvador</option>
+            <option value="gq">equatorial guinea</option>
+            <option value="er">eritrea</option>
+            <option value="ee">estonia</option>
+            <option value="et">ethiopia</option>
+            <option value="fk">falkland islands (malvinas)</option>
+            <option value="fo">faroe islands</option>
+            <option value="fj">fiji</option>
+            <option value="fi">finland</option>
+            <option value="fr">france</option>
+            <option value="gf">french guiana</option>
+            <option value="pf">french polynesia</option>
+            <option value="tf">french southern territories</option>
+            <option value="ga">gabon</option>
+            <option value="gm">gambia</option>
+            <option value="ge">georgia</option>
+            <option value="de">germany</option>
+            <option value="gh">ghana</option>
+            <option value="gi">gibraltar</option>
+            <option value="gr">greece</option>
+            <option value="gl">greenland</option>
+            <option value="gd">grenada</option>
+            <option value="gp">guadeloupe</option>
+            <option value="gu">guam</option>
+            <option value="gt">guatemala</option>
+            <option value="gg">guernsey</option>
+            <option value="gn">guinea</option>
+            <option value="gw">guinea-bissau</option>
+            <option value="gy">guyana</option>
+            <option value="ht">haiti</option>
+            <option value="hm">heard island and mcdonald islands</option>
+            <option value="va">holy see (vatican city state)</option>
+            <option value="hn">honduras</option>
+            <option value="hk">hong kong</option>
+            <option value="hu">hungary</option>
+            <option value="is">iceland</option>
+            <option value="in">india</option>
+            <option value="id">indonesia</option>
+            <option value="ir">iran, islamic republic of</option>
+            <option value="iq">iraq</option>
+            <option value="ie">ireland</option>
+            <option value="im">isle of man</option>
+            <option value="il">israel</option>
+            <option value="it">italy</option>
+            <option value="jm">jamaica</option>
+            <option value="jp">japan</option>
+            <option value="je">jersey</option>
+            <option value="jo">jordan</option>
+            <option value="kz">kazakhstan</option>
+            <option value="ke">kenya</option>
+            <option value="ki">kiribati</option>
+            <option value="kp">korea, democratic people's republic of</option>
+            <option value="kr">korea, republic of</option>
+            <option value="xk">kosovo</option>
+            <option value="kw">kuwait</option>
+            <option value="kg">kyrgyzstan</option>
+            <option value="la">lao people's democratic republic</option>
+            <option value="lv">latvia</option>
+            <option value="lb">lebanon</option>
+            <option value="ls">lesotho</option>
+            <option value="lr">liberia</option>
+            <option value="ly">libyan arab jamahiriya</option>
+            <option value="li">liechtenstein</option>
+            <option value="lt">lithuania</option>
+            <option value="lu">luxembourg</option>
+            <option value="mo">macao</option>
+            <option value="mk">macedonia, the former yugoslav republic of</option>
+            <option value="mg">madagascar</option>
+            <option value="mw">malawi</option>
+            <option value="my">malaysia</option>
+            <option value="mv">maldives</option>
+            <option value="ml">mali</option>
+            <option value="mt">malta</option>
+            <option value="mh">marshall islands</option>
+            <option value="mq">martinique</option>
+            <option value="mr">mauritania</option>
+            <option value="mu">mauritius</option>
+            <option value="yt">mayotte</option>
+            <option value="mx">mexico</option>
+            <option value="fm">micronesia, federated states of</option>
+            <option value="md">moldova, republic of</option>
+            <option value="mc">monaco</option>
+            <option value="mn">mongolia</option>
+            <option value="me">montenegro</option>
+            <option value="ms">montserrat</option>
+            <option value="ma">morocco</option>
+            <option value="mz">mozambique</option>
+            <option value="mm">myanmar</option>
+            <option value="na">namibia</option>
+            <option value="nr">nauru</option>
+            <option value="np">nepal</option>
+            <option value="nl">netherlands</option>
+            <option value="an">netherlands antilles</option>
+            <option value="nc">new caledonia</option>
+            <option value="nz">new zealand</option>
+            <option value="ni">nicaragua</option>
+            <option value="ne">niger</option>
+            <option value="ng">nigeria</option>
+            <option value="nu">niue</option>
+            <option value="nf">norfolk island</option>
+            <option value="mp">northern mariana islands</option>
+            <option value="no">norway</option>
+            <option value="om">oman</option>
+            <option value="pk">pakistan</option>
+            <option value="pw">palau</option>
+            <option value="ps">palestinian territory, occupied</option>
+            <option value="pa">panama</option>
+            <option value="pg">papua new guinea</option>
+            <option value="py">paraguay</option>
+            <option value="pe">peru</option>
+            <option value="ph">philippines</option>
+            <option value="pn">pitcairn</option>
+            <option value="pl">poland</option>
+            <option value="pt">portugal</option>
+            <option value="pr">puerto rico</option>
+            <option value="qa">qatar</option>
+            <option value="re">reunion</option>
+            <option value="ro">romania</option>
+            <option value="ru">russian federation</option>
+            <option value="rw">rwanda</option>
+            <option value="bl">saint barthelemy</option>
+            <option value="sh">saint helena</option>
+            <option value="kn">saint kitts and nevis</option>
+            <option value="lc">saint lucia</option>
+            <option value="mf">saint martin</option>
+            <option value="pm">saint pierre and miquelon</option>
+            <option value="vc">saint vincent and the grenadines</option>
+            <option value="ws">samoa</option>
+            <option value="sm">san marino</option>
+            <option value="st">sao tome and principe</option>
+            <option value="sa">saudi arabia</option>
+            <option value="sn">senegal</option>
+            <option value="rs">serbia</option>
+            <option value="cs">serbia and montenegro</option>
+            <option value="sc">seychelles</option>
+            <option value="sl">sierra leone</option>
+            <option value="sg">singapore</option>
+            <option value="sx">sint maarten</option>
+            <option value="sk">slovakia</option>
+            <option value="si">slovenia</option>
+            <option value="sb">solomon islands</option>
+            <option value="so">somalia</option>
+            <option value="za">south africa</option>
+            <option value="gs">south georgia and the south sandwich islands</option>
+            <option value="ss">south sudan</option>
+            <option value="es">spain</option>
+            <option value="lk">sri lanka</option>
+            <option value="sd">sudan</option>
+            <option value="sr">suriname</option>
+            <option value="sj">svalbard and jan mayen</option>
+            <option value="sz">swaziland</option>
+            <option value="se">sweden</option>
+            <option value="ch">switzerland</option>
+            <option value="sy">syrian arab republic</option>
+            <option value="tw">taiwan, province of china</option>
+            <option value="tj">tajikistan</option>
+            <option value="tz">tanzania, united republic of</option>
+            <option value="th">thailand</option>
+            <option value="tl">timor-leste</option>
+            <option value="tg">togo</option>
+            <option value="tk">tokelau</option>
+            <option value="to">tonga</option>
+            <option value="tt">trinidad and tobago</option>
+            <option value="tn">tunisia</option>
+            <option value="tr">turkey</option>
+            <option value="tm">turkmenistan</option>
+            <option value="tc">turks and caicos islands</option>
+            <option value="tv">tuvalu</option>
+            <option value="ug">uganda</option>
+            <option value="ua">ukraine</option>
+            <option value="ae">united arab emirates</option>
+            <option value="gb">united kingdom</option>
+            <option value="us">united states</option>
+            <option value="um">united states minor outlying islands</option>
+            <option value="uy">uruguay</option>
+            <option value="uz">uzbekistan</option>
+            <option value="vu">vanuatu</option>
+            <option value="ve">venezuela</option>
+            <option value="vn">viet nam</option>
+            <option value="vg">virgin islands, british</option>
+            <option value="vi">virgin islands, u.s.</option>
+            <option value="wf">wallis and futuna</option>
+            <option value="eh">western sahara</option>
+            <option value="ye">yemen</option>
+            <option value="zm">zambia</option>
+            <option value="zw">zimbabwe</option>
+        </select>
+        </td>
+        <td><input type="text" class="form-control" formControlName="state" style="min-width: 150px;max-width:300px" ></td>
+        <td><input type="text" class="form-control" formControlName="city" style="min-width: 150px;max-width:300px" ></td>
+        <td><input type="text" class="form-control" formControlName="zipcode" style="min-width: 100px;max-width:300px"></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+<div class="col-6 text-start">
+  <button type="submit" style="margin-right: 5px;" class="btn btn-primary" [disabled]="!contactsGeneralForm.valid || contactsGeneralForm.controls.contacts.length<1">Submit</button>
+  <button type="button" class="btn btn-secondary "  (click)="cancel()" >Cancel</button>
+</div>
+<div class="col-6 text-start">
+
+</div>
+
+</div>
+</form>

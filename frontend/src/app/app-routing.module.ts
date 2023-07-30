@@ -10,8 +10,12 @@ import { CarreraListComponent } from './carrera/carrera-list/carrera-list.compon
 import { CarreraReportComponent } from './carrera/carrera-report/carrera-report.component';
 import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.component';
 import { UsuarioSignupComponent } from './usuario/usuario-signup/usuario-signup.component';
-
+import {BatchCreationComponent} from './contacts/batch-creation/batch-creation.component';
 const routes: Routes = [
+  {
+    path: 'upload',
+    component: BatchCreationComponent
+  },
   {
     path: '',
     component: UsuarioLoginComponent,
