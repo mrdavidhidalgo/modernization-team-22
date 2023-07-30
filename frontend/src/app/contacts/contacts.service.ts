@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ContactUploaded } from './contact_uploaded';
+import { ContactUploaded,ContactUploadedPost } from './contact_uploaded';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class ContactsService {
     const headers = new HttpHeaders({
       'Content-Type': `application/json`
     })
-    this.http.post(`${this.backUrl}/test`, contacts,{ headers: headers }).subscribe(x=> console.log(x))
+    this.http.post(`${this.backUrl}/test`, new ContactUploadedPost(contacts),{ headers: headers }).subscribe(x=> console.log(x))
 
   }
 

@@ -67,3 +67,11 @@ export class ContactUploaded {
       this.zipcode = zipcode
     }
 }
+
+
+export class ContactUploadedPost {
+  data:Array<ContactUploaded>
+  constructor(data:Array<ContactUploaded>){
+    this.data=data
+  }
+}
