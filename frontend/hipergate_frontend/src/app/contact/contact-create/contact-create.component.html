@@ -1,0 +1,250 @@
+<!--<app-header></app-header>-->
+<div class="container align-items-center">
+  <div class="row align-items-center">
+    <div class="col-xs-10 col-lg-5 card px-2 ">
+      <div class="card-body text-center">
+        <h2 class="my-2">Hipergate</h2>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-lg-7 container">
+      <div class="row">
+
+        <div class="my-2 row">
+          <h1 class="text-center">Create Contact</h1>
+        </div>
+
+        <form [formGroup]="contactForm" (ngSubmit)="createContact()">
+
+          <div class="form-group">
+              <div class="mb-3 row">
+              <label for="bo_private" class="col-lg-3 col-form-label">Private</label>
+              <div class="col-lg-9  ">
+                  <input type="checkbox" formControlName="bo_private"  class="form-check">
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="id_ref" class="col-lg-3 col-form-label">Reference</label>
+              <div class="col-lg-9  ">
+                  <input formControlName="id_ref" type="text" class="form-control">
+              </div>
+            </div>
+            <div class="alert alert-danger my-3"
+              *ngIf="contactForm.get('id_ref')?.hasError('required') && contactForm.get('id_ref')?.touched">
+              You must enter a Reference
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="contactForm.get('id_ref')?.hasError('maxlength')">
+              Reference must not exceed 50 characters
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <div class="mb-3 row">
+              <label for="tx_name" class="col-lg-3 col-form-label">First Name</label>
+              <div class="col-lg-9">
+                <input formControlName="tx_name" type="text" class="form-control" placeholder="">
+              </div>
+            </div>
+            <div class="alert alert-danger my-3"
+              *ngIf="contactForm.get('tx_name')?.hasError('required') && contactForm.get('tx_name')?.touched">
+              Enter a first name
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="contactForm.get('tx_name')?.hasError('tx_name')">
+              First name must not exceed 50 characters
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="contactForm.get('tx_name')?.hasError('minlength')">
+              First name must have a minimum of 4 characters
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="mb-3 row">
+              <label for="tx_surname" class="col-lg-3 col-form-label">Last Name</label>
+              <div class="col-lg-9">
+                <input formControlName="tx_surname" type="text" class="form-control" placeholder="">
+              </div>
+            </div>
+            <div class="alert alert-danger my-3"
+              *ngIf="contactForm.get('tx_surname')?.hasError('required') && contactForm.get('tx_surname')?.touched">
+              Enter a last name
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="contactForm.get('tx_surname')?.hasError('maxlength')">
+             Last name must not exceed 50 characters
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="contactForm.get('tx_surname')?.hasError('minlength')">
+             Last name must have a minimum of 4 characters
+            </div>
+          </div>
+            
+         <div class="form-group">
+            <div class="mb-3 row">
+              <label for="de_title" class="col-lg-3 col-form-label">Position</label>
+              <div class="col-lg-3">
+                <select formControlName="de_title" class="form-select">
+                    <option selected>Select</option>
+                    <option>Mr</option>
+                    <option>Ms</option>
+                    <option>Dr</option>
+                    <option>Eng</option>
+                    <option>Pr</option>
+                    <option>Lt</option>
+                    <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="alert alert-danger my-3"
+              *ngIf="contactForm.get('de_title')?.hasError('pattern') && contactForm.get('sn_passport')?.touched">
+              Select a position
+            </div>
+           
+          </div>
+
+          <div class="form-group">
+            <div class="mb-3 row">
+              <label for="tp_passport" class="col-lg-3 col-form-label">Type</label>
+              <div class="col-lg-2">
+                <select formControlName="id_gender" class="form-select">
+                    <option>C</option>
+                    <option>T</option>
+                    <option>N</option>
+                </select>
+              </div>
+              <label for="do" class="col-lg-2 col-form-label">Legal Id</label>
+              <div class="col-lg-5">
+                <input formControlName="sn_passport" type="text" class="form-control" placeholder="1234567">
+              </div>
+            </div>
+            <div class="alert alert-danger my-3"
+              *ngIf="contactForm.get('sn_passport')?.hasError('required') && contactForm.get('sn_passport')?.touched">
+              Enter a legal Id
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="contactForm.get('sn_passport')?.hasError('maxlength')">
+              Legal Id must not exceed 16 characters
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="contactForm.get('sn_passport')?.hasError('minlength')">
+             Legal Id must have a minimum of 4 characters
+            </div>  
+               <div class="alert alert-danger my-3" *ngIf="contactForm.get('sn_passport')?.hasError('pattern')">
+             Legal Id must be numeric
+            </div> 
+          </div>
+            
+          <div class="form-group">
+            <div class="mb-3 row">
+              <label for="tx_division" class="col-lg-3 col-form-label">Division</label>
+              <div class="col-lg-9  ">
+                <input formControlName="tx_division" type="text" class="form-control" placeholder="Principal">
+              </div>
+            </div>   
+          </div>
+          <div class="form-group">
+            <div class="mb-3 row">
+              <label for="tx_dept" class="col-lg-3 col-form-label">Dept</label>
+              <div class="col-lg-9  ">
+                <input formControlName="tx_dept" type="text" class="form-control" placeholder="Sales">
+              </div>
+            </div>   
+              
+          </div>
+          <div class="form-group">
+            <div class="mb-3 row">
+              <label for="dt_birth" class="col-lg-3 col-form-label">Birth Date</label>
+              <div class="col-lg-4">
+                <input formControlName="dt_birth" type="text" class="form-control" placeholder="1960-12-23">
+              </div>
+              <label for="ny_age" class="col-lg-2 col-form-label">Age</label>
+              <div class="col-lg-3">
+                <input formControlName="ny_age" type="text" class="form-control" placeholder="18">
+              </div>
+            </div>
+               <div class="alert alert-danger my-3" *ngIf="contactForm.get('ny_age')?.hasError('pattern')">
+              Age must be numeric
+            </div>  
+          </div>
+            
+            
+         <div class="form-group">
+            <div class="mb-3 row">
+              <label for="id_gender" class="col-lg-3 col-form-label">Gender</label>
+              <div class="col-lg-9">
+                <select formControlName="id_gender" class="form-select">
+                    <option>F</option>
+                    <option>M</option>
+                    <option>O</option>                    
+                </select>
+              </div>
+            </div>     
+          </div>
+            
+          <div class="form-group">
+            <div class="mb-3 row" >
+              <label for="id_nationality" class="col-lg-3 col-form-label">Nationality</label>
+              <div class="col-lg-9">
+                <select formControlName="id_nationality" class="form-select">
+                    <option [ngValue]="null" disabled>Select Country</option>
+                   <option *ngFor="let country of countries" [ngValue]="country.id_country" >{{country.tr_country_en}}</option>
+                </select>
+              </div>
+            </div>     
+          </div>
+      
+          <div class="form-group">
+            <div class="mb-3 row">
+              <label for="gu_geozone" class="col-lg-3 col-form-label">Zone</label>
+              <div class="col-lg-9">
+                <select formControlName="gu_geozone" class="form-select">
+                    <option>U</option>
+                    <option>R</option>
+                </select>
+              </div>
+            </div>     
+          </div>  
+          
+          <div class="form-group">
+            <div class="mb-3 row">
+              <label for="gu_sales_man" class="col-lg-3 col-form-label">SalesMan</label>
+              <div class="col-lg-9">
+                <select formControlName="gu_sales_man" class="form-select">
+                    <option>Saler 1</option>
+                    <option>Saler 2</option>
+                </select>
+              </div>
+            </div>     
+          </div>
+            
+           <div class="form-group">
+            <div class="mb-3 row">
+              <label for="tx_comments" class="col-lg-3 col-form-label">Comments</label>
+              <div class="col-lg-9">
+                  <textarea formControlName="tx_comments" type="text" class="form-control" rows="3" placeholder="Put your comment here"> 
+                  </textarea>
+              </div>
+            </div>
+            <div class="alert alert-danger my-3"
+              *ngIf="contactForm.get('tx_comments')?.hasError('required') && contactForm.get('tx_comments')?.touched">
+              Enter a comment
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="contactForm.get('tx_comments')?.hasError('tx_comments')">
+             Last name must not exceed 500 characters
+            </div>
+            <div class="alert alert-danger my-3" *ngIf="contactForm.get('tx_comments')?.hasError('minlength')">
+             Last name must have a minimum of 10 characters
+            </div>
+          </div>  
+            
+            <div class="col-12 text-center mt-3">
+            <button type="submit"  class="btn btn-danger col-4"(click)="cancelCreation()">Cancel</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;  
+            <button type="submit" class="btn btn-warning col-4"
+              [disabled]="!contactForm.valid">Save</button>
+          </div>
+            <div>
+                <br>
+            </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

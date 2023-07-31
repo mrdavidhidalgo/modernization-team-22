@@ -139,22 +139,7 @@ export class BatchCreationComponent implements OnInit {
     this.showSuccess()
     this.contactsGeneralForm.reset()
     this.validateData()
-    /* .subscribe(b => {
-        this.showSuccess(carrera)
-        this.carreraForm.reset()
-        this.routerPath.navigate([`/carreras/${this.userId}/${this.token}`])
-      },
-        error => {
-          if (error.statusText === "UNAUTHORIZED") {
-            this.showWarning("Su sesión ha caducado, por favor vuelva a iniciar sesión.")
-          }
-          else if (error.statusText === "UNPROCESSABLE ENTITY") {
-            this.showError("No hemos podido identificarlo, por favor vuelva a iniciar sesión.")
-          }
-          else {
-            this.showError("Ha ocurrido un error. " + error.message)
-          }
-        })*/
+
   }
 
   cancel(){
